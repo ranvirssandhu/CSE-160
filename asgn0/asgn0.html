@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>asgn0</title>
+</head>
+<body onload="main()">
+
+  <p>Ranvir Sandhu</p>
+  <p>rsandhu6@ucsc.edu</p>
+
+  <canvas id="example" width="400" height="400"></canvas>
+  <br>
+
+  <label for="v1x">v1 x:</label>
+  <input type="number" id="v1x" value="2.25" step="any">
+
+  <label for="v1y">v1 y:</label>
+  <input type="number" id="v1y" value="2.25" step="any">
+
+  <br><br>
+
+  <label for="v2x">v2 x:</label>
+  <input type="number" id="v2x" value="0" step="any">
+
+  <label for="v2y">v2 y:</label>
+  <input type="number" id="v2y" value="0" step="any">
+
+  <br><br>
+
+  <input type="button" value="Draw" onclick="handleDrawEvent()">
+
+  <br><br>
+
+  <label for="operation">Operation:</label>
+  <select id="operation">
+    <option value="add">Add</option>
+    <option value="sub">Sub</option>
+    <option value="mul">Mul</option>
+    <option value="div">Div</option>
+    <option value="magnitude">Magnitude</option>
+    <option value="normalize">Normalize</option>
+    <option value="angle">Angle between</option>
+    <option value="area">Area</option>
+  </select>
+
+  <label for="scalar">Scalar:</label>
+  <input type="number" id="scalar" value="2" step="any">
+
+  <input type="button" value="Draw Operation" onclick="handleDrawOperationEvent()">
+
+  <script src="lib/cuon-matrix-cse160.js"></script>
+  <script src="asgn0.js"></script>
+</body>
+</html>
