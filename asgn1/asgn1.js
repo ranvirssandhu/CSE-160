@@ -40,18 +40,22 @@ function main() {
   setupWebGL();
   connectVariablesToGLSL();
   addActionsForHtmlUI();
+
   canvas.onmousedown = function(ev) {
     handleClicks(ev);
   };
+
   canvas.onmousemove = function(ev) {
     if (ev.buttons === 1) {
       handleClicks(ev);
     }
   };
+
   window.onmouseup = function() {
     g_prevX = null;
     g_prevY = null;
   };
+
   gl.clearColor(0, 0, 0, 1);
   renderAllShapes();
 }
@@ -194,9 +198,11 @@ function stampBetween(x1, y1, x2, y2) {
 
 function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT);
+
   for (let i = 0; i < shapesList.length; i++) {
     shapesList[i].render();
   }
+
   if (g_showPicture) {
     drawPictureScene();
   }
@@ -215,62 +221,37 @@ function drawColoredTriangle(vertices, color) {
 }
 
 function drawPictureScene() {
-  drawColoredTriangle([-1, 1, -1, 0.15, 1, 1], [0.53, 0.8, 0.98, 1]);
-  drawColoredTriangle([1, 1, -1, 0.15, 1, 0.15], [0.53, 0.8, 0.98, 1]);
+  drawColoredTriangle([-1, 1, -1, -1, 1, 1], [0.6, 0.75, 0.9, 1]);
+  drawColoredTriangle([1, 1, -1, -1, 1, -1], [0.5, 0.65, 0.85, 1]);
 
-  drawColoredTriangle([-1, 0.15, -1, -1, 1, 0.15], [0.23, 0.67, 0.3, 1]);
-  drawColoredTriangle([1, 0.15, -1, -1, 1, -1], [0.18, 0.58, 0.27, 1]);
+  drawColoredTriangle([-0.2, 0.5, -0.6, 0.2, -0.2, -0.5], [1.0, 0.8, 0.2, 1]);
+  drawColoredTriangle([-0.2, 0.5, -0.2, -0.5, 0.2, 0.3], [1.0, 0.8, 0.2, 1]);
+  drawColoredTriangle([-0.2, -0.5, 0.2, -0.3, 0.2, 0.3], [1.0, 0.8, 0.2, 1]);
 
-  drawColoredTriangle([0.62, 0.78, 0.78, 0.62, 0.62, 0.46], [1, 0.9, 0.16, 1]);
-  drawColoredTriangle([0.62, 0.78, 0.46, 0.62, 0.62, 0.46], [1, 0.9, 0.16, 1]);
-  drawColoredTriangle([0.62, 0.78, 0.78, 0.62, 0.78, 0.78], [1, 0.85, 0.1, 1]);
-  drawColoredTriangle([0.62, 0.78, 0.46, 0.62, 0.46, 0.78], [1, 0.85, 0.1, 1]);
+  drawColoredTriangle([-0.35, 0.0, -0.25, 0.05, -0.25, -0.05], [0,0,0,1]);
 
-  drawColoredTriangle([-0.98, 0.02, -0.68, 0.56, -0.38, 0.02], [0.42, 0.36, 0.4, 1]);
-  drawColoredTriangle([-0.68, 0.56, -0.52, 0.26, -0.38, 0.02], [0.48, 0.42, 0.47, 1]);
-  drawColoredTriangle([-0.68, 0.56, -0.82, 0.25, -0.98, 0.02], [0.36, 0.3, 0.35, 1]);
-  drawColoredTriangle([-0.76, 0.4, -0.68, 0.56, -0.6, 0.4], [0.97, 0.97, 1, 1]);
+  drawColoredTriangle([-0.1, 0.2, 0.1, 0.15, -0.05, -0.4], [0.2, 0.4, 0.8, 1]);
+  drawColoredTriangle([-0.1, 0.2, 0.0, -0.05, 0.2, 0.1], [0.2, 0.4, 0.8, 1]);
+  drawColoredTriangle([0.0, -0.05, 0.1, -0.4, 0.2, -0.2], [0.2, 0.4, 0.8, 1]);
 
-  drawColoredTriangle([-0.5, 0.02, -0.08, 0.72, 0.34, 0.02], [0.33, 0.35, 0.48, 1]);
-  drawColoredTriangle([-0.08, 0.72, 0.12, 0.32, 0.34, 0.02], [0.4, 0.42, 0.55, 1]);
-  drawColoredTriangle([-0.08, 0.72, -0.26, 0.34, -0.5, 0.02], [0.28, 0.3, 0.42, 1]);
-  drawColoredTriangle([-0.16, 0.5, -0.08, 0.72, 0, 0.5], [0.97, 0.97, 1, 1]);
+  drawColoredTriangle([0.2, 0.1, 0.5, 0.3, 0.35, 0.0], [0.2, 0.4, 0.8, 1]);
+  drawColoredTriangle([0.2, -0.1, 0.35, 0.0, 0.6, -0.1], [0.2, 0.4, 0.8, 1]);
+  drawColoredTriangle([0.2, -0.1, 0.4, -0.3, 0.6, -0.4], [0.2, 0.4, 0.8, 1]);
 
-  drawColoredTriangle([-0.28, -0.15, -0.28, -0.67, 0.18, -0.15], [0.81, 0.56, 0.33, 1]);
-  drawColoredTriangle([0.18, -0.15, -0.28, -0.67, 0.18, -0.67], [0.75, 0.5, 0.28, 1]);
+  drawColoredTriangle([-0.8, 0.2, -0.7, 0.3, -0.6, 0.2], [1,1,1,1]);
+  drawColoredTriangle([-0.8, 0.2, -0.7, 0.1, -0.6, 0.2], [1,1,1,1]);
 
-  drawColoredTriangle([-0.36, -0.15, -0.05, 0.12, 0.26, -0.15], [0.67, 0.12, 0.14, 1]);
-  drawColoredTriangle([-0.05, 0.12, 0.1, -0.03, 0.26, -0.15], [0.57, 0.09, 0.11, 1]);
+  drawColoredTriangle([-0.6, 0.4, -0.5, 0.5, -0.4, 0.4], [1,1,1,1]);
+  drawColoredTriangle([-0.6, 0.4, -0.5, 0.3, -0.4, 0.4], [1,1,1,1]);
 
-  drawColoredTriangle([-0.09, -0.67, -0.09, -0.36, 0.02, -0.36], [0.38, 0.22, 0.1, 1]);
-  drawColoredTriangle([-0.09, -0.67, 0.02, -0.36, 0.02, -0.67], [0.34, 0.18, 0.08, 1]);
+  drawColoredTriangle([0.6, 0.1, 0.7, 0.2, 0.8, 0.1], [1,1,1,1]);
+  drawColoredTriangle([0.6, 0.1, 0.7, 0.0, 0.8, 0.1], [1,1,1,1]);
 
-  drawColoredTriangle([-0.22, -0.28, -0.22, -0.42, -0.1, -0.28], [0.72, 0.9, 1, 1]);
-  drawColoredTriangle([-0.1, -0.28, -0.22, -0.42, -0.1, -0.42], [0.65, 0.84, 1, 1]);
+  drawColoredTriangle([0.6, -0.2, 0.7, -0.1, 0.8, -0.2], [1,1,1,1]);
+  drawColoredTriangle([0.6, -0.2, 0.7, -0.3, 0.8, -0.2], [1,1,1,1]);
 
-  drawColoredTriangle([0.04, -0.28, 0.04, -0.42, 0.16, -0.28], [0.72, 0.9, 1, 1]);
-  drawColoredTriangle([0.16, -0.28, 0.04, -0.42, 0.16, -0.42], [0.65, 0.84, 1, 1]);
-
-  drawColoredTriangle([0.48, -0.67, 0.48, -0.36, 0.58, -0.36], [0.43, 0.24, 0.11, 1]);
-  drawColoredTriangle([0.48, -0.67, 0.58, -0.36, 0.58, -0.67], [0.38, 0.21, 0.1, 1]);
-
-  drawColoredTriangle([0.34, -0.36, 0.53, -0.08, 0.72, -0.36], [0.04, 0.53, 0.19, 1]);
-  drawColoredTriangle([0.37, -0.21, 0.53, 0.04, 0.69, -0.21], [0.06, 0.64, 0.24, 1]);
-  drawColoredTriangle([0.4, -0.06, 0.53, 0.17, 0.66, -0.06], [0.1, 0.76, 0.3, 1]);
-
-  drawColoredTriangle([-0.92, -0.72, -0.92, -0.28, -0.84, -0.28], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.92, -0.72, -0.84, -0.28, -0.84, -0.72], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.84, -0.28, -0.68, -0.28, -0.84, -0.4], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.68, -0.28, -0.68, -0.4, -0.84, -0.4], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.84, -0.4, -0.68, -0.58, -0.76, -0.58], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.84, -0.4, -0.76, -0.58, -0.84, -0.58], [1, 1, 1, 1]);
-
-  drawColoredTriangle([-0.6, -0.28, -0.42, -0.28, -0.6, -0.38], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.42, -0.28, -0.42, -0.38, -0.6, -0.38], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.6, -0.38, -0.6, -0.5, -0.5, -0.38], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.6, -0.5, -0.42, -0.5, -0.6, -0.6], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.42, -0.5, -0.42, -0.6, -0.6, -0.6], [1, 1, 1, 1]);
-  drawColoredTriangle([-0.42, -0.6, -0.42, -0.72, -0.5, -0.6], [1, 1, 1, 1]);
+  drawColoredTriangle([0.7, -0.5, 0.8, -0.4, 0.9, -0.5], [1,1,1,1]);
+  drawColoredTriangle([0.7, -0.5, 0.8, -0.6, 0.9, -0.5], [1,1,1,1]);
 }
 
 function initShaders(gl, vshader, fshader) {
