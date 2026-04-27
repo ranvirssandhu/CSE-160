@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ASGN2 Blocky Cow - Ranvir Sandhu rsandhu6@ucsc.edu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      color: #1f2937;
+    }
+
+    .page {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 28px;
+    }
+
+    .layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    #webgl {
+      border: 2px solid #111827;
+      background: #000;
+      cursor: grab;
+    }
+
+    #webgl:active {
+      cursor: grabbing;
+    }
+
+    .panel {
+      width: 385px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #475569;
+    }
+
+    button.active {
+      background: #16a34a;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .value {
+      font-weight: 700;
+    }
+
+    .note {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #475569;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body onload="main()">
+  <div class="page">
+    <h1>ASGN2 Blocky Cow - Ranvir Sandhu - rsandhu6@ucsc.edu</h1>
+    <div class="layout">
+      <canvas id="webgl" width="700" height="700"></canvas>
+
+      <div class="panel">
+        <div class="section">
+          <h2>Actions</h2>
+          <div class="row">
+            <button id="animationButton">Animation Off</button>
+            <button id="resetButton" class="secondary">Reset View</button>
+          </div>
+          <div class="small">Drag the cow to rotate. Shift-click the cow for the poke animation.</div>
+        </div>
+
+        <div class="section">
+          <h2>Global Rotation</h2>
+          <label for="globalXSlide">X Rotation: <span id="globalXValue" class="value">0</span></label>
+          <input id="globalXSlide" type="range" min="-180" max="180" value="0">
+
+          <label for="globalYSlide">Y Rotation: <span id="globalYValue" class="value">0</span></label>
+          <input id="globalYSlide" type="range" min="-180" max="180" value="0">
+        </div>
+
+        <div class="section">
+          <h2>Head and Tail</h2>
+          <label for="headSlide">Head: <span id="headValue" class="value">0</span></label>
+          <input id="headSlide" type="range" min="-35" max="35" value="0">
+
+          <label for="tailSlide">Tail: <span id="tailValue" class="value">15</span></label>
+          <input id="tailSlide" type="range" min="-45" max="45" value="15">
+        </div>
+
+        <div class="section">
+          <h2>Front Left Leg Chain</h2>
+          <label for="frontLeftUpperSlide">Upper Leg: <span id="frontLeftUpperValue" class="value">10</span></label>
+          <input id="frontLeftUpperSlide" type="range" min="-45" max="45" value="10">
+
+          <label for="frontLeftLowerSlide">Knee: <span id="frontLeftLowerValue" class="value">-15</span></label>
+          <input id="frontLeftLowerSlide" type="range" min="-55" max="55" value="-15">
+
+          <label for="frontLeftHoofSlide">Hoof: <span id="frontLeftHoofValue" class="value">8</span></label>
+          <input id="frontLeftHoofSlide" type="range" min="-35" max="35" value="8">
+        </div>
+
+        <div class="section">
+          <h2>Front Right Leg Chain</h2>
+          <label for="frontRightUpperSlide">Upper Leg: <span id="frontRightUpperValue" class="value">-10</span></label>
+          <input id="frontRightUpperSlide" type="range" min="-45" max="45" value="-10">
+
+          <label for="frontRightLowerSlide">Knee: <span id="frontRightLowerValue" class="value">15</span></label>
+          <input id="frontRightLowerSlide" type="range" min="-55" max="55" value="15">
+
+          <label for="frontRightHoofSlide">Hoof: <span id="frontRightHoofValue" class="value">-8</span></label>
+          <input id="frontRightHoofSlide" type="range" min="-35" max="35" value="-8">
+        </div>
+
+        <div class="section">
+          <h2>Back Left Leg Chain</h2>
+          <label for="backLeftUpperSlide">Upper Leg: <span id="backLeftUpperValue" class="value">-10</span></label>
+          <input id="backLeftUpperSlide" type="range" min="-45" max="45" value="-10">
+
+          <label for="backLeftLowerSlide">Knee: <span id="backLeftLowerValue" class="value">15</span></label>
+          <input id="backLeftLowerSlide" type="range" min="-55" max="55" value="15">
+
+          <label for="backLeftHoofSlide">Hoof: <span id="backLeftHoofValue" class="value">-8</span></label>
+          <input id="backLeftHoofSlide" type="range" min="-35" max="35" value="-8">
+        </div>
+
+        <div class="section">
+          <h2>Back Right Leg Chain</h2>
+          <label for="backRightUpperSlide">Upper Leg: <span id="backRightUpperValue" class="value">10</span></label>
+          <input id="backRightUpperSlide" type="range" min="-45" max="45" value="10">
+
+          <label for="backRightLowerSlide">Knee: <span id="backRightLowerValue" class="value">-15</span></label>
+          <input id="backRightLowerSlide" type="range" min="-55" max="55" value="-15">
+
+          <label for="backRightHoofSlide">Hoof: <span id="backRightHoofValue" class="value">8</span></label>
+          <input id="backRightHoofSlide" type="range" min="-35" max="35" value="8">
+        </div>
+
+        <div class="section">
+          <h2>Performance</h2>
+          <div class="note" id="performanceText">FPS: -- | Render: -- ms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="asgn2.js"></script>
+</body>
+</html>
