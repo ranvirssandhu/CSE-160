@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ASGN3 World - Ranvir Sandhu rsandhu6@ucsc.edu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      color: #1f2937;
+    }
+
+    .page {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 28px;
+    }
+
+    .layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .canvasBox {
+      position: relative;
+      width: 700px;
+      height: 700px;
+    }
+
+    #webgl {
+      border: 2px solid #111827;
+      background: #000;
+      cursor: crosshair;
+    }
+
+    #centerDot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border: 2px solid black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .panel {
+      width: 385px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .note {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #475569;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body onload="main()">
+  <div class="page">
+    <h1>ASGN3 Cow Farm World - Ranvir Sandhu - rsandhu6@ucsc.edu</h1>
+    <div class="layout">
+      <div class="canvasBox">
+        <canvas id="webgl" width="700" height="700"></canvas>
+        <div id="centerDot"></div>
+      </div>
+
+      <div class="panel">
+        <div class="section">
+          <h2>Controls</h2>
+          <div class="note">
+            W A S D move the camera.<br>
+            Q and E rotate left and right.<br>
+            Move the mouse on the canvas to rotate the camera.<br>
+            F adds a block in front of you.<br>
+            G deletes a block in front of you.
+          </div>
+          <div class="small">Click the canvas first so the mouse can control the camera.</div>
+        </div>
+
+        <div class="section">
+          <h2>Game</h2>
+          <div class="note" id="gameText">Lead the cow to the golden hay block.</div>
+        </div>
+
+        <div class="section">
+          <h2>Performance</h2>
+          <div class="note" id="performanceText">FPS: -- | Render: -- ms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="Camera.js"></script>
+  <script src="asgn3.js"></script>
+</body>
+</html>
