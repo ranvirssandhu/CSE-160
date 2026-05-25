@@ -158,6 +158,7 @@ let g_lightingOn = true;
 let g_normalOn = false;
 let g_pointLightOn = true;
 let g_spotLightOn = true;
+let g_lightAnimate = true;
 let g_lightX = 0;
 let g_lightY = 5;
 let g_lightZ = 0;
@@ -651,6 +652,10 @@ function addActionsForHtmlUI() {
     g_spotLightOn = !g_spotLightOn;
   });
 
+  addToggle("animateLightButton", function() {
+    g_lightAnimate = !g_lightAnimate;
+  });
+
   document.getElementById("lightXSlide").addEventListener("input", function() {
     g_lightX = Number(this.value);
     setLightPosition();
@@ -700,9 +705,15 @@ function addToggle(id, changeFunction) {
 }
 
 function setLightPosition() {
-  g_lightPos[0] = g_lightX;
-  g_lightPos[1] = g_lightY;
-  g_lightPos[2] = g_lightZ;
+  if (g_lightAnimate) {
+    g_lightPos[0] = g_lightX + Math.cos(g_seconds * 0.35) * 3.5;
+    g_lightPos[1] = g_lightY;
+    g_lightPos[2] = g_lightZ + Math.sin(g_seconds * 0.35) * 3.5;
+  } else {
+    g_lightPos[0] = g_lightX;
+    g_lightPos[1] = g_lightY;
+    g_lightPos[2] = g_lightZ;
+  }
 }
 
 function updateLightText() {
@@ -710,6 +721,7 @@ function updateLightText() {
   document.getElementById("normalButton").textContent = g_normalOn ? "Normals On" : "Normals Off";
   document.getElementById("pointButton").textContent = g_pointLightOn ? "Point Light On" : "Point Light Off";
   document.getElementById("spotButton").textContent = g_spotLightOn ? "Spot Light On" : "Spot Light Off";
+  document.getElementById("animateLightButton").textContent = g_lightAnimate ? "Animate Light On" : "Animate Light Off";
   document.getElementById("lightText").textContent =
     "Point light: (" + g_lightPos[0].toFixed(1) + ", " + g_lightPos[1].toFixed(1) + ", " + g_lightPos[2].toFixed(1) + ") | Color: " +
     Math.round(g_lightColor[0] * 100) + ", " + Math.round(g_lightColor[1] * 100) + ", " + Math.round(g_lightColor[2] * 100);
@@ -746,6 +758,8 @@ function getCameraDir() {
 
 function renderScene() {
   const start = performance.now();
+  setLightPosition();
+  updateLightText();
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   const spotDir = getCameraDir();
