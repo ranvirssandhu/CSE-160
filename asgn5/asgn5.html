@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASGN5 Three.js Space Farm - Ranvir Sandhu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e8eef7;
+      color: #1f2937;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 28px;
+    }
+
+    .layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .canvasBox {
+      position: relative;
+      width: 850px;
+      height: 650px;
+      border: 2px solid #111827;
+      background: #000;
+    }
+
+    #scene {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .panel {
+      width: 360px;
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .note {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    button {
+      margin: 4px 4px 6px 0;
+      padding: 7px 10px;
+      border: 1px solid #94a3b8;
+      border-radius: 8px;
+      background: #f8fafc;
+      cursor: pointer;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 4px 0;
+      font-size: 14px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>ASGN5 Three.js Space Farm - Ranvir Sandhu - rsandhu6@ucsc.edu</h1>
+    <div class="layout">
+      <div class="canvasBox">
+        <canvas id="scene"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="section">
+          <h2>Controls</h2>
+          <div class="note">
+            Drag the mouse to orbit the camera.<br>
+            Scroll to zoom in and out.<br>
+            W A S D moves the ship.<br>
+            Press R to reset the ship.
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Scene Checklist</h2>
+          <div class="note">
+            This scene uses more than 20 primary shapes, textured shapes, a textured OBJ model with MTL, a textured skybox, a perspective camera, mouse controls, animation, and multiple lights.
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Wow Feature</h2>
+          <div class="note" id="wowText">
+            Mini game: move the ship with W A S D and collect all the glowing fuel rings around the farm. Boundary walls keep the player inside the world.
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Lighting</h2>
+          <div class="note">
+            <button id="toggleLights" type="button">Lights On</button>
+            <button id="toggleMotion" type="button">Motion On</button>
+            <label>Point Light Height</label>
+            <input id="lightHeight" type="range" min="3" max="16" value="8" step="0.1">
+            <div>The warm light marker shows the point light. Use the slider to move it up and down.</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Status</h2>
+          <div class="note" id="statusText">Fuel rings: 0 / 6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
+  <script src="asgn5.js"></script>
+</body>
+</html>
